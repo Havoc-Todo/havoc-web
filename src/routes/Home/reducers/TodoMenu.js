@@ -11,6 +11,7 @@ const defaultFields = {
   date: null,
   time: null
 }
+
 const addTodoMenu = (state = defaultFields, action) => {
   switch (action.type) {
     case UPDATE_FIELD_TODO_MENU:
