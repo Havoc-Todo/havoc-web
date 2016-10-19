@@ -9,15 +9,35 @@
   align-items: center;
 }
 
+
 .main-card {
   // background-color: palegreen !important;
   position: relative;
   height: 100%;
   width: 700px;
   max-width: 100%;
-  overflow: scroll;
+  // overflow: scroll;
 }
 
-.main-card pre {
-  font-size: 10px !important;
+// HACK because react inserts a div that messes up child height
+//and i can't figure out how to get rid of it
+.main-card > div {
+  height: 100%;
+}
+
+.main-card > div > * {
+  height: 100%;
+}
+
+.fill-scroll {
+  height: 100%;
+  overflow: scroll
+}
+
+.todo-menu {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }

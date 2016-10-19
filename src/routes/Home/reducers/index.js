@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux'
 import { CHANGE_VIEW } from '../actions'
 import { RECEIVE_TODOLIST } from '../actions/todoList'
-import addTodoMenu from './addTodoMenu'
+import addTodoMenu from './TodoMenu'
 
 const view = (state = 'VIEW_TODO_LIST', action) => {
   switch (action.type) {

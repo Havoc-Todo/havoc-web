@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react'
 import TodoListContainer from '../containers/TodoListContainer'
 import AddTodoButton from './AddTodoButton'
-import AddTodoMenuContainer from '../containers/AddTodoMenuContainer'
+import TodoMenuContainer from '../containers/TodoMenuContainer'
 
 class App extends React.Component {
 
@@ -19,7 +19,7 @@ class App extends React.Component {
   }
 
   renderAddTodo () {
-    return <AddTodoMenuContainer />
+    return <TodoMenuContainer />
   }
 
   render () {

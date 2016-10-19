@@ -6,15 +6,7 @@ import DatePicker from 'material-ui/DatePicker'
 import TimePicker from 'material-ui/TimePicker'
 import RaisedButton from 'material-ui/RaisedButton'
 import FlatButton from 'material-ui/FlatButton'
-
-const style = {
-  width: '100%',
-  display: 'flex',
-  flexDirection: 'column',
-  justifyContent: 'center',
-  alignItems: 'center'
-
-}
+import './Main.scss'
 
 let AddTodoMenu = ({
   category, name, description, priority, date, time,
@@ -59,46 +51,48 @@ let AddTodoMenu = ({
     updateField('time', null)
   }
   return (
-    <div style={style}>
-      <SelectField
-        value={category}
-        onChange={handleCategoryChange}>
-        <MenuItem value={'school'} primaryText='School' />
-        <MenuItem value={'work'} primaryText='Work' />
-      </SelectField>
-      <TextField
-        value={name}
-        onChange={handleNameChange}
-        hintText='Task Name'
-        floatingLabelText='Task Name' />
-      <TextField
-        value={description}
-        onChange={handleDescriptionChange}
-        hintText='Description'
-        floatingLabelText='Description' />
-      <SelectField
-        value={priority}
-        onChange={handlePriorityChange}>
-        <MenuItem value={1} primaryText='Low Priority' />
-        <MenuItem value={2} primaryText='Medium Priority' />
-        <MenuItem value={3} primaryText='High Priority' />
-      </SelectField>
-      <DatePicker
-        value={date}
-        onChange={handleDateChange}
-        hintText='Due Date' />
-      <TimePicker
-        value={time}
-        onChange={handleTimeChange}
-        hintText='Due Time' />
-      <RaisedButton
-        label='Create Task'
-        primary
-        onTouchTap={handleSubmit} />
-      <FlatButton
-        label='Cancel'
-        secondary
-        onTouchTap={cancelAddTodo} />
+    <div className='fill-scroll'>
+      <div className='todo-menu'>
+        <SelectField
+          value={category}
+          onChange={handleCategoryChange}>
+          <MenuItem value={'school'} primaryText='School' />
+          <MenuItem value={'work'} primaryText='Work' />
+        </SelectField>
+        <TextField
+          value={name}
+          onChange={handleNameChange}
+          hintText='Task Name'
+          floatingLabelText='Task Name' />
+        <TextField
+          value={description}
+          onChange={handleDescriptionChange}
+          hintText='Description'
+          floatingLabelText='Description' />
+        <SelectField
+          value={priority}
+          onChange={handlePriorityChange}>
+          <MenuItem value={1} primaryText='Low Priority' />
+          <MenuItem value={2} primaryText='Medium Priority' />
+          <MenuItem value={3} primaryText='High Priority' />
+        </SelectField>
+        <DatePicker
+          value={date}
+          onChange={handleDateChange}
+          hintText='Due Date' />
+        <TimePicker
+          value={time}
+          onChange={handleTimeChange}
+          hintText='Due Time' />
+        <RaisedButton
+          label='Create Task'
+          primary
+          onTouchTap={handleSubmit} />
+        <FlatButton
+          label='Cancel'
+          secondary
+          onTouchTap={cancelAddTodo} />
+      </div>
     </div>
   )
 }

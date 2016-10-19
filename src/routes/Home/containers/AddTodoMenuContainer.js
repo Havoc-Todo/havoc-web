@@ -2,7 +2,7 @@ import { connect } from 'react-redux'
 import { changeView } from '../actions'
 import { fetchTodoListIfNeeded } from '../actions/todoList'
 import { fetchAddTodoIfNeeded } from '../actions/addTodo'
-import { updateField } from '../actions/addTodoMenu'
+import { updateFieldTodoMenu } from '../actions/TodoMenu'
 import AddTodoMenu from '../components/AddTodoMenu'
 
 const mapStateToProps = (state) => {
@@ -23,8 +23,7 @@ const mapDispatchToProps = (dispatch) => {
       dispatch(changeView('VIEW_TODO_LIST'))
     },
     updateField: (key, value) => {
-      console.log('update')
-      dispatch(updateField(key, value))
+      dispatch(updateFieldTodoMenu(key, value))
     },
     addNewTodo: (todo) => {
       dispatch(fetchAddTodoIfNeeded(todo))

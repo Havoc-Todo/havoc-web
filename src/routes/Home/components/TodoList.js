@@ -5,7 +5,7 @@ import TodoContainer from '../containers/TodoContainer'
 const TodoList = ({
   todos, onTodoClick
 }) => (
-  <List>
+  <List className='fill-scroll'>
     {todos.map(todo =>
       <TodoContainer
         key={todo.t_id}

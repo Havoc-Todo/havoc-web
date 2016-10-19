@@ -1,7 +1,7 @@
 import { connect } from 'react-redux'
 import { fetchTodoListIfNeeded } from '../actions/todoList'
 import TodoList from '../components/TodoList'
-import { fetchDeleteTodoIfNeeded } from '../actions/addTodoMenu'
+import { fetchDeleteTodoIfNeeded } from '../actions/TodoMenu'
 
 const mapStateToProps = (state) => {
   return {
