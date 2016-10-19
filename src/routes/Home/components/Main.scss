@@ -12,11 +12,10 @@
 .main-card {
   // background-color: palegreen !important;
   position: relative;
-  height: 80%;
-  width: 40%;
+  height: 100%;
+  width: 700px;
+  max-width: 100%;
   overflow: scroll;
-  margin-left: 20px;
-  margin-right: 20px;
 }
 
 .main-card pre {

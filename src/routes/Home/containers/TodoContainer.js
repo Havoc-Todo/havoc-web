@@ -1,7 +1,7 @@
 import { connect } from 'react-redux'
 import { fetchTodoListIfNeeded } from '../actions/todoList'
 import { fetchDeleteTodoIfNeeded } from '../actions/deleteTodo'
-import Task from '../components/Task'
+import Todo from '../components/Todo'
 
 const mapStateToProps = (state) => {
   return {}
@@ -19,9 +19,9 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-const TaskContainer = connect(
+const TodoContainer = connect(
   mapStateToProps,
   mapDispatchToProps
-)(Task)
+)(Todo)
 
-export default TaskContainer
+export default TodoContainer

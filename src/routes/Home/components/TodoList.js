@@ -1,29 +1,29 @@
 import React, { PropTypes } from 'react'
 import { List } from 'material-ui/List'
-import TaskContainer from '../containers/TaskContainer'
+import TodoContainer from '../containers/TodoContainer'
 
 const TodoList = ({
-  tasks, onTaskClick
+  todos, onTodoClick
 }) => (
   <List>
-    {tasks.map(task =>
-      <TaskContainer
-        key={task.t_id}
-        {...task}
-        onClick={() => onTaskClick(task.t_id)}
+    {todos.map(todo =>
+      <TodoContainer
+        key={todo.t_id}
+        {...todo}
+        onClick={() => onTodoClick(todo.t_id)}
       />
     )}
   </List>
 )
 
 TodoList.propTypes = {
-  tasks: PropTypes.any,
+  todos: PropTypes.any,
   // todos: PropTypes.arrayOf(PropTypes.shape({
   //   id: PropTypes.number.isRequired,
   //   completed: PropTypes.bool.isRequired,
   //   text: PropTypes.string.isRequired
   // }).isRequired).isRequired,
-  onTaskClick: PropTypes.func.isRequired
+  onTodoClick: PropTypes.func.isRequired
 }
 
 export default TodoList

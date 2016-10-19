@@ -46,7 +46,8 @@ let AddTodoMenu = ({
       'priority': priority,
       'dateDue': 1477291500000,
       'user': '57a7bd24-ddf0-5c24-9091-ba331e486dc7',
-      'subtasks': []
+      'subtasks': [],
+      'status': 'INCOMPLETE'
     }
     addNewTodo(newTodo)
 

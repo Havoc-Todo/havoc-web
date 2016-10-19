@@ -12,7 +12,7 @@ const view = (state = 'VIEW_TODO_LIST', action) => {
   }
 }
 
-const tasks = (state = [], action) => {
+const todos = (state = [], action) => {
   switch (action.type) {
     case RECEIVE_TODOLIST:
       return action.task
@@ -23,7 +23,7 @@ const tasks = (state = [], action) => {
 
 const todoApp = combineReducers({
   view,
-  tasks,
+  todos,
   addTodoMenu
 })
 

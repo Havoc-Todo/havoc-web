@@ -5,13 +5,13 @@ import { fetchDeleteTodoIfNeeded } from '../actions/addTodoMenu'
 
 const mapStateToProps = (state) => {
   return {
-    tasks: state.todoApp.tasks
+    todos: state.todoApp.todos
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    onTaskClick: () => {
+    onTodoClick: () => {
 
     },
     deleteTodo: (id) => {
