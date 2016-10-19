@@ -6,7 +6,7 @@ import { updateFieldTodoMenu, clearTodoMenu } from '../actions/TodoMenu'
 import TodoMenu from '../components/TodoMenu'
 
 const mapStateToProps = (state) => {
-  const menu = state.todoApp.addTodoMenu
+  const menu = state.todoApp.todoMenu
   return {
     category: menu.category,
     name: menu.name,

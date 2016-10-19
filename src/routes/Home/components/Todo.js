@@ -8,7 +8,7 @@ import IconButton from 'material-ui/IconButton'
 import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert'
 import MenuItem from 'material-ui/MenuItem'
 
-const Todo = ({ onClick, name, category, t_id, deleteTodo }) => {
+const Todo = ({ onClick, name, category, t_id, deleteTodo, handleEdit, fields }) => {
   const iconButtonElement = (
     <IconButton
       touch
@@ -19,7 +19,7 @@ const Todo = ({ onClick, name, category, t_id, deleteTodo }) => {
 
   const rightIconMenu = (
     <IconMenu iconButtonElement={iconButtonElement}>
-      <MenuItem>Edit</MenuItem>
+      <MenuItem onClick={() => handleEdit(fields)}>Edit</MenuItem>
       <MenuItem onClick={() => deleteTodo(t_id)}>Delete</MenuItem>
     </IconMenu>)
 
@@ -37,7 +37,8 @@ Todo.propTypes = {
   name: PropTypes.string.isRequired,
   category: PropTypes.string.isRequired,
   t_id: PropTypes.string.isRequired,
-  deleteTodo: PropTypes.func.isRequired
+  deleteTodo: PropTypes.func.isRequired,
+  handleEdit: PropTypes.func.isRequired
 }
 
 export default Todo

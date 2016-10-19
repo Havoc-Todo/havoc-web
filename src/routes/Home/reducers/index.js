@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux'
 import { CHANGE_VIEW } from '../actions'
 import { RECEIVE_TODOLIST } from '../actions/todoList'
-import addTodoMenu from './TodoMenu'
+import todoMenu from './TodoMenu'
 
 const view = (state = 'VIEW_TODO_LIST', action) => {
   switch (action.type) {
@@ -24,7 +24,7 @@ const todos = (state = [], action) => {
 const todoApp = combineReducers({
   view,
   todos,
-  addTodoMenu
+  todoMenu
 })
 
 export default todoApp
