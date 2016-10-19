@@ -10,6 +10,7 @@ import './Main.scss'
 
 
 let TodoMenu = ({
+  submitText, cancelText,
   category, name, description, priority, date, time,
   handleCategoryChange, handleNameChange, handleDescriptionChange,
   handlePriorityChange, handleDateChange, handleTimeChange,
@@ -20,7 +21,8 @@ let TodoMenu = ({
       <div className='todo-menu'>
         <SelectField
           value={category}
-          onChange={handleCategoryChange}>
+          onChange={handleCategoryChange}
+          floatingLabelText='Category'>
           <MenuItem value={'school'} primaryText='School' />
           <MenuItem value={'work'} primaryText='Work' />
         </SelectField>
@@ -36,25 +38,29 @@ let TodoMenu = ({
           floatingLabelText='Description' />
         <SelectField
           value={priority}
-          onChange={handlePriorityChange}>
-          <MenuItem value={'LOW'} primaryText='Low Priority' />
-          <MenuItem value={'MEDIUM'} primaryText='Medium Priority' />
-          <MenuItem value={'HIGH'} primaryText='High Priority' />
+          onChange={handlePriorityChange}
+          floatingLabelText='Priority' >
+          <MenuItem value={'NONE'} primaryText='None' />
+          <MenuItem value={'LOW'} primaryText='Low' />
+          <MenuItem value={'MEDIUM'} primaryText='Medium' />
+          <MenuItem value={'HIGH'} primaryText='High' />
         </SelectField>
         <DatePicker
           value={date}
           onChange={handleDateChange}
+          floatingLabelText='Due Date'
           hintText='Due Date' />
         <TimePicker
           value={time}
           onChange={handleTimeChange}
+          floatingLabelText='Due Time'
           hintText='Due Time' />
         <RaisedButton
-          label='Create Task'
+          label={submitText || 'Submit'}
           primary
           onTouchTap={handleSubmit} />
         <FlatButton
-          label='Cancel'
+          label={cancelText || 'Cancel'}
           secondary
           onTouchTap={handleCancel} />
       </div>
@@ -63,6 +69,8 @@ let TodoMenu = ({
 }
 
 TodoMenu.propTypes = {
+  submitText              : PropTypes.string.isRequired,
+  cancelText              : PropTypes.string.isRequired,
   category                : PropTypes.string.isRequired,
   name                    : PropTypes.string.isRequired,
   description             : PropTypes.string.isRequired,

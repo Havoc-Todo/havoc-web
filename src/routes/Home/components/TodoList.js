@@ -13,6 +13,7 @@ const TodoList = ({
         onClick={() => onTodoClick(todo.t_id)}
       />
     )}
+    <div style={{ height: '80px', width: '100%' }} />
   </List>
 )
 

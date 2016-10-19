@@ -5,8 +5,24 @@ import { fetchTodoListIfNeeded } from '../actions/todoList'
 import { fetchDeleteTodoIfNeeded } from '../actions/deleteTodo'
 import Todo from '../components/Todo'
 
+const getDateTime = (dateDue) => {
+  if (dateDue) {
+    let date = new Date()
+    date.setTime(dateDue)
+    return {
+      date: new Date(date.getFullYear(), date.getMonth(), date.getDate()),
+      time: date
+    }
+  }
+  return {
+    date: null,
+    time: null
+  }
+}
+
 const mapStateToProps = (state, ownProps) => {
-  const { name, description, category, priority, date, time } = ownProps
+  const { name, description, category, priority, dateDue } = ownProps
+  const { date, time } = getDateTime(dateDue)
   return {
     fields: {
       name,
@@ -30,7 +46,7 @@ const mapDispatchToProps = (dispatch) => {
     },
     handleEdit: (fields) => {
       dispatch(loadTodoMenu(fields))
-      dispatch(changeView('VIEW_ADD_TODO'))
+      dispatch(changeView('VIEW_EDIT_TODO'))
     }
   }
 }

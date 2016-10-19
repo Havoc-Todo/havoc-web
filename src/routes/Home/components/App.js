@@ -1,7 +1,8 @@
 import React, { PropTypes } from 'react'
 import TodoListContainer from '../containers/TodoListContainer'
 import AddTodoButton from './AddTodoButton'
-import TodoMenuContainer from '../containers/TodoMenuContainer'
+import AddTodoMenu from '../containers/AddTodoMenu'
+import EditTodoMenu from '../containers/EditTodoMenu'
 
 class App extends React.Component {
 
@@ -9,27 +10,21 @@ class App extends React.Component {
     this.props.fetchTodoListIfNeeded('57a7bd24-ddf0-5c24-9091-ba331e486dc7')
   }
 
-  renderTodoList () {
-    return (
-      <div>
-        <TodoListContainer />
-        <AddTodoButton />
-      </div>
-    )
-  }
-
-  renderAddTodo () {
-    return <TodoMenuContainer />
-  }
-
   render () {
     const { view } = this.props
 
     switch (view) {
       case 'VIEW_TODO_LIST':
-        return this.renderTodoList()
+        return (
+          <div>
+            <TodoListContainer />
+            <AddTodoButton />
+          </div>
+        )
       case 'VIEW_ADD_TODO':
-        return this.renderAddTodo()
+        return <AddTodoMenu />
+      case 'VIEW_EDIT_TODO':
+        return <EditTodoMenu />
       default:
         return <div>{'Invalid View'}</div>
     }

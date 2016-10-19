@@ -1,7 +1,5 @@
 import { connect } from 'react-redux'
 import { changeView } from '../actions'
-import { fetchTodoListIfNeeded } from '../actions/todoList'
-import { fetchAddTodoIfNeeded } from '../actions/addTodo'
 import { updateFieldTodoMenu, clearTodoMenu } from '../actions/TodoMenu'
 import TodoMenu from '../components/TodoMenu'
 
@@ -25,41 +23,12 @@ const mapDispatchToProps = (dispatch) => {
     },
     updateField: (key, value) => {
       dispatch(updateFieldTodoMenu(key, value))
-    },
-    handleSubmit: (todo) => {
-      dispatch(fetchAddTodoIfNeeded(todo))
-        .then(() => {
-          dispatch(clearTodoMenu())
-          dispatch(fetchTodoListIfNeeded('57a7bd24-ddf0-5c24-9091-ba331e486dc7'))
-          .then(() => {
-            dispatch(changeView('VIEW_TODO_LIST'))
-          })
-          .catch((error) => {
-            console.log(error)
-          })
-        })
-        .catch((error) => {
-          console.log(error)
-        })
     }
   }
 }
 
 const mergeProps = (stateProps, dispatchProps, ownProps) => {
   return Object.assign({}, stateProps, dispatchProps, ownProps, {
-    handleSubmit: () => {
-      const { name, description, category, priority } = stateProps
-      dispatchProps.handleSubmit({
-        name,
-        description,
-        category,
-        priority,
-        dateDue: 1477291500000,
-        user: '57a7bd24-ddf0-5c24-9091-ba331e486dc7',
-        subtasks: [],
-        status: 'INCOMPLETE'
-      })
-    },
     handleCategoryChange: (event, index, value) => {
       dispatchProps.updateField('category', value)
     },
