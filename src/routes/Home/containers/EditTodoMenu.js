@@ -1,9 +1,10 @@
 import { connect } from 'react-redux'
 import TodoMenuContainer from './TodoMenuContainer'
-import { fetchAddTodoIfNeeded } from '../actions/addTodo'
+import { fetchEditTodoIfNeeded } from '../actions/editTodo'
 import { clearTodoMenu } from '../actions/TodoMenu'
 import { changeView } from '../actions'
 import { fetchTodoListIfNeeded } from '../actions/todoList'
+import { generateTodo } from '../helpers'
 
 const mapStateToProps = (state) => {
   return {
@@ -16,7 +17,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     handleSubmit: (todo) => {
-      dispatch(fetchAddTodoIfNeeded(todo))
+      dispatch(fetchEditTodoIfNeeded(todo))
         .then(() => {
           dispatch(clearTodoMenu())
           dispatch(fetchTodoListIfNeeded('57a7bd24-ddf0-5c24-9091-ba331e486dc7'))
@@ -31,20 +32,6 @@ const mapDispatchToProps = (dispatch) => {
           console.log(error)
         })
     }
-  }
-}
-
-const generateTodo = (todoMenuFields) => {
-  const { name, description, category, priority } = todoMenuFields
-  return {
-    name,
-    description,
-    category,
-    priority,
-    dateDue: 1477291500000,
-    user: '57a7bd24-ddf0-5c24-9091-ba331e486dc7',
-    subtasks: [],
-    status: 'INCOMPLETE'
   }
 }
 

@@ -5,34 +5,8 @@ import { fetchTodoListIfNeeded } from '../actions/todoList'
 import { fetchDeleteTodoIfNeeded } from '../actions/deleteTodo'
 import Todo from '../components/Todo'
 
-const getDateTime = (dateDue) => {
-  if (dateDue) {
-    let date = new Date()
-    date.setTime(dateDue)
-    return {
-      date: new Date(date.getFullYear(), date.getMonth(), date.getDate()),
-      time: date
-    }
-  }
-  return {
-    date: null,
-    time: null
-  }
-}
-
 const mapStateToProps = (state, ownProps) => {
-  const { name, description, category, priority, dateDue } = ownProps
-  const { date, time } = getDateTime(dateDue)
-  return {
-    fields: {
-      name,
-      description,
-      category,
-      priority,
-      date,
-      time
-    }
-  }
+  return { ...ownProps.todo }
 }
 
 const mapDispatchToProps = (dispatch) => {
@@ -45,15 +19,25 @@ const mapDispatchToProps = (dispatch) => {
         })
     },
     handleEdit: (fields) => {
-      dispatch(loadTodoMenu(fields))
+      // BUG!!! changeView must come before loadTodo
       dispatch(changeView('VIEW_EDIT_TODO'))
+      dispatch(loadTodoMenu(fields))
     }
   }
 }
 
+const mergeProps = (stateProps, dispatchProps, ownProps) => {
+  return Object.assign({}, stateProps, dispatchProps, ownProps, {
+    handleEdit: () => {
+      dispatchProps.handleEdit(ownProps.todo)
+    }
+  })
+}
+
 const TodoContainer = connect(
   mapStateToProps,
-  mapDispatchToProps
+  mapDispatchToProps,
+  mergeProps
 )(Todo)
 
 export default TodoContainer

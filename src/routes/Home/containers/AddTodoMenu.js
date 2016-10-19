@@ -4,6 +4,7 @@ import { fetchAddTodoIfNeeded } from '../actions/addTodo'
 import { clearTodoMenu } from '../actions/TodoMenu'
 import { changeView } from '../actions'
 import { fetchTodoListIfNeeded } from '../actions/todoList'
+import { generateTodo } from '../helpers'
 
 const mapStateToProps = (state) => {
   return {
@@ -31,33 +32,6 @@ const mapDispatchToProps = (dispatch) => {
           console.log(error)
         })
     }
-  }
-}
-
-const generateTodo = (todoMenuFields) => {
-  const { name, description, category, priority, date, time } = todoMenuFields
-
-  const unixTime = (date && time)
-    ? (new Date(
-        date.getFullYear(),
-        date.getMonth(),
-        date.getDate(),
-        time.getHours(),
-        time.getMinutes(),
-        time.getSeconds(),
-        time.getMilliseconds()
-      )).getTime()
-    : null
-
-  return {
-    name,
-    description,
-    category,
-    priority,
-    dateDue: unixTime,
-    user: '57a7bd24-ddf0-5c24-9091-ba331e486dc7',
-    subtasks: [],
-    status: 'INCOMPLETE'
   }
 }
 

@@ -9,7 +9,7 @@ const TodoList = ({
     {todos.map(todo =>
       <TodoContainer
         key={todo.t_id}
-        {...todo}
+        todo={todo}
         onClick={() => onTodoClick(todo.t_id)}
       />
     )}

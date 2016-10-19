@@ -19,7 +19,7 @@ const Todo = ({ onClick, name, category, t_id, deleteTodo, handleEdit, fields })
 
   const rightIconMenu = (
     <IconMenu iconButtonElement={iconButtonElement}>
-      <MenuItem onClick={() => handleEdit(fields)}>Edit</MenuItem>
+      <MenuItem onClick={handleEdit}>Edit</MenuItem>
       <MenuItem onClick={() => deleteTodo(t_id)}>Delete</MenuItem>
     </IconMenu>)
 
@@ -33,6 +33,7 @@ const Todo = ({ onClick, name, category, t_id, deleteTodo, handleEdit, fields })
 }
 
 Todo.propTypes = {
+  fields: PropTypes.any.isRequired,
   onClick: PropTypes.func.isRequired,
   name: PropTypes.string.isRequired,
   category: PropTypes.string.isRequired,

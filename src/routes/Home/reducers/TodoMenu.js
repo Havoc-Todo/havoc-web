@@ -21,11 +21,14 @@ const defaultFields = () => {
     description: '',
     priority: 'NONE',
     date,
-    time
+    time,
+    t_id: null,
+    subtasks: [],
+    status: 'INCOMPLETE'
   }
 }
 
-const todoMenu = (state = defaultFields, action) => {
+const todoMenu = (state, action) => {
   switch (action.type) {
     case UPDATE_FIELD_TODO_MENU:
       return Object.assign({}, state, {
@@ -34,9 +37,9 @@ const todoMenu = (state = defaultFields, action) => {
     case CLEAR_TODO_MENU:
       return defaultFields()
     case LOAD_TODO_MENU:
-      return action.fields
+      return Object.assign({}, defaultFields(), action.fields)
     default:
-      return state
+      return defaultFields()
   }
 }
 

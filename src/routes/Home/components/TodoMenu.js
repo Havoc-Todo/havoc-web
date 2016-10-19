@@ -8,7 +8,6 @@ import RaisedButton from 'material-ui/RaisedButton'
 import FlatButton from 'material-ui/FlatButton'
 import './Main.scss'
 
-
 let TodoMenu = ({
   submitText, cancelText,
   category, name, description, priority, date, time,
