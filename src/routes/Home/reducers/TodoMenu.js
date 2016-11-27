@@ -28,7 +28,7 @@ const defaultFields = () => {
   }
 }
 
-const todoMenu = (state, action) => {
+const todoMenu = (state = defaultFields(), action) => {
   switch (action.type) {
     case UPDATE_FIELD_TODO_MENU:
       return Object.assign({}, state, {
@@ -39,7 +39,7 @@ const todoMenu = (state, action) => {
     case LOAD_TODO_MENU:
       return Object.assign({}, defaultFields(), action.fields)
     default:
-      return defaultFields()
+      return state
   }
 }
 
