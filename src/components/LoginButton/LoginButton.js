@@ -54,7 +54,7 @@ class LoginButton extends React.Component {
       this.state.init === false
         ? (<RaisedButton label='auth2 not initialized' labelPosition='before' />)
         : this.props.loggedIn === false
-          ? <RaisedButton label='Log In With Google' labelPosition='before'
+          ? <RaisedButton label='Log In' labelPosition='before'
             onClick={() => { window.gapi.auth2.getAuthInstance().signIn() }} />
           : <RaisedButton label='Log Out' labelPosition='before'
             onClick={() => { window.gapi.auth2.getAuthInstance().signOut() }} />
