@@ -36,7 +36,7 @@ class LoginButton extends React.Component {
     const apiKey = 'AIzaSyCIzU9qhu2CJOlXvZ-E2wGAxq8YDafw3pE'
     const discoveryDocs = ['https://people.googleapis.com/$discovery/rest?version=v1']
     const clientId = '423585535949-ta1cr7k1v7imusuvu828emdjo7tosn20.apps.googleusercontent.com'
-    const scope = 'profile'
+    const scope = 'profile https://www.googleapis.com/auth/calendar'
 
     gapi.load('client:auth2', () => {
       gapi.client.init({ apiKey, discoveryDocs, clientId, scope })
@@ -64,7 +64,7 @@ class LoginButton extends React.Component {
 
 LoginButton.propTypes = {
   dispatch: PropTypes.func.isRequired,
-  loggedIn: PropTypes.Boolean.isRequired
+  loggedIn: PropTypes.bool.isRequired
 }
 
 const mapStateToProps = (state) => {
