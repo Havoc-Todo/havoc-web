@@ -1,0 +1,43 @@
+#main {
+  height: auto;
+  width: 100%;
+  position: absolute;
+  top: 64px;
+  bottom: 0px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.main-card {
+  // background-color: palegreen !important;
+  position: relative;
+  height: 100%;
+  width: 700px;
+  max-width: 100%;
+  // overflow: scroll;
+}
+
+// HACK because react inserts a div that messes up child height
+//and i can't figure out how to get rid of it
+.main-card > div {
+  height: 100%;
+}
+
+.main-card > div > * {
+  height: 100%;
+}
+
+.fill-scroll {
+  height: 100%;
+  overflow: scroll
+}
+
+.todo-menu {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}

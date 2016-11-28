@@ -8,7 +8,7 @@ class App extends React.Component {
 
   componentDidMount () {
     this.props.fetchTodoListIfNeeded('57a7bd24-ddf0-5c24-9091-ba331e486dc7')
-    setInterval(() => { this.props.fetchTodoListIfNeeded('57a7bd24-ddf0-5c24-9091-ba331e486dc7') }, 1000)
+    // setInterval(() => { this.props.fetchTodoListIfNeeded('57a7bd24-ddf0-5c24-9091-ba331e486dc7') }, 1000)
   }
 
   render () {
