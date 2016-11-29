@@ -51,6 +51,50 @@ const fetchAddTodo = (todo) => {
       .then(json => {
         dispatch(receiveAddTodo(json.doc))
       })
+      .then(() => {
+        console.log('todo is', todo)
+        console.log('gapi is', window.gapi)
+        if (todo.addToGCalendar === true) {
+          const event = {
+            'summary': 'Google I/O 2015',
+            'location': '800 Howard St., San Francisco, CA 94103',
+            'description': 'A chance to hear more about Google\'s developer products.',
+            'start': {
+              'dateTime': '2016-11-29T09:00:00-07:00',
+              'timeZone': 'America/Los_Angeles'
+            },
+            'end': {
+              'dateTime': '2016-11-29T17:00:00-07:00',
+              'timeZone': 'America/Los_Angeles'
+            },
+            'recurrence': [
+              'RRULE:FREQ=DAILY;COUNT=2'
+            ],
+            'attendees': [
+              { 'email': 'lpage@example.com' },
+              { 'email': 'sbrin@example.com' }
+            ],
+            'reminders': {
+              'useDefault': false,
+              'overrides': [
+                { 'method': 'email', 'minutes': 24 * 60 },
+                { 'method': 'popup', 'minutes': 10 }
+              ]
+            }
+          }
+          window.gapi.client.load('calendar', 'v3', () => {
+            console.log('initialized calendar')
+            const request = window.gapi.client.calendar.events.insert({
+              'calendarId': 'primary',
+              'resource': event
+            })
+            console.log('request is ', request)
+            request.execute((event) => {
+              console.log('Event created: ' + event.htmlLink)
+            })
+          })
+        }
+      })
       .catch((error) => {
         dispatch(failureAddTodo(error))
       })

@@ -38,6 +38,7 @@ const mapDispatchToProps = (dispatch) => {
 const mergeProps = (stateProps, dispatchProps, ownProps) => {
   return Object.assign({}, stateProps, dispatchProps, ownProps, {
     handleSubmit: () => {
+      console.log(stateProps.todoMenu)
       dispatchProps.handleSubmit(generateTodo(stateProps.todoMenu))
     }
   })

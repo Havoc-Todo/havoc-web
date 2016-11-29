@@ -24,7 +24,8 @@ const defaultFields = () => {
     time,
     t_id: null,
     subtasks: [],
-    status: 'INCOMPLETE'
+    status: 'INCOMPLETE',
+    addToGCalendar: false
   }
 }
 
