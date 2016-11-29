@@ -5,7 +5,7 @@ import { fetchTodoListIfNeeded } from '../actions/todoList'
 const mapStateToProps = (state) => {
   return {
     view: state.todoApp.view,
-    validUser: state.user.loggedIn && state.user.data !== null
+    user: state.user
   }
 }
 

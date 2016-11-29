@@ -4,6 +4,7 @@ import AddTodoButton from './AddTodoButton'
 import AddTodoMenu from '../containers/AddTodoMenu'
 import EditTodoMenu from '../containers/EditTodoMenu'
 import DefaultScreen from './DefaultScreen'
+import RateLimitScreen from './RateLimitScreen'
 
 class App extends React.Component {
 
@@ -20,8 +21,9 @@ class App extends React.Component {
   }
 
   render () {
-    const { view, validUser } = this.props
-    if (!validUser) return <DefaultScreen />
+    const { view, user } = this.props
+    if (!user.loggedIn) return <DefaultScreen />
+    if (user.data === null) return <RateLimitScreen />
     switch (view) {
       case 'VIEW_TODO_LIST':
         return (
@@ -42,7 +44,7 @@ class App extends React.Component {
 
 App.propTypes = {
   view: PropTypes.string.isRequired,
-  validUser: PropTypes.bool.isRequired,
+  user: PropTypes.any,
   fetchTodoListIfNeeded: PropTypes.func.isRequired
 }
 
