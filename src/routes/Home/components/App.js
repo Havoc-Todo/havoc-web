@@ -3,17 +3,24 @@ import TodoListContainer from '../containers/TodoListContainer'
 import AddTodoButton from './AddTodoButton'
 import AddTodoMenu from '../containers/AddTodoMenu'
 import EditTodoMenu from '../containers/EditTodoMenu'
+import DefaultScreen from './DefaultScreen'
 
 class App extends React.Component {
 
   componentDidMount () {
     this.props.fetchTodoListIfNeeded('57a7bd24-ddf0-5c24-9091-ba331e486dc7')
-    // setInterval(() => { this.props.fetchTodoListIfNeeded('57a7bd24-ddf0-5c24-9091-ba331e486dc7') }, 1000)
+    this.intervalTimer = setInterval(() => {
+      this.props.fetchTodoListIfNeeded('57a7bd24-ddf0-5c24-9091-ba331e486dc7')
+    }, 1000)
+  }
+
+  componentWillUnmount () {
+    clearInterval(this.intervalTimer)
   }
 
   render () {
-    const { view } = this.props
-
+    const { view, validUser } = this.props
+    if (!validUser) return <DefaultScreen />
     switch (view) {
       case 'VIEW_TODO_LIST':
         return (
@@ -34,6 +41,7 @@ class App extends React.Component {
 
 App.propTypes = {
   view: PropTypes.string.isRequired,
+  validUser: PropTypes.bool.isRequired,
   fetchTodoListIfNeeded: PropTypes.func.isRequired
 }
 

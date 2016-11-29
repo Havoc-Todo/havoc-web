@@ -46,7 +46,7 @@ const fetchTodoList = (user) => {
 }
 
 const shouldFetchTodoList = (state, user) => {
-  return true
+  return state.user.loggedIn && state.user.data != null
   // const tasks = state.todoApp.tasks
   // if (!tasks) {
   //   return true
