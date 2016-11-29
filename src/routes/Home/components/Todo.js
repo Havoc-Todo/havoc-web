@@ -33,7 +33,7 @@ const Todo = ({ onClick, name, category, t_id, deleteTodo, handleEdit, fields })
 }
 
 Todo.propTypes = {
-  fields: PropTypes.any.isRequired,
+  fields: PropTypes.any,
   onClick: PropTypes.func.isRequired,
   name: PropTypes.string.isRequired,
   category: PropTypes.string.isRequired,
