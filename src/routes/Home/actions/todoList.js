@@ -10,10 +10,10 @@ export const FAILURE_TODOLIST = 'FAILURE_TODOLIST'
 // ------------------------------------
 // Actions
 // ------------------------------------
-const requestTodoList = (user) => {
+const requestTodoList = (userId) => {
   return {
     type: REQUEST_TODOLIST,
-    user
+    userId
   }
 }
 
@@ -31,10 +31,10 @@ const failureTodoList = (error) => {
   }
 }
 
-const fetchTodoList = (user) => {
+const fetchTodoList = (userId) => {
   return (dispatch) => {
-    dispatch(requestTodoList(user))
-    return fetch(`http://ec2-54-158-62-69.compute-1.amazonaws.com:3000/api/task/read/${user}`)
+    dispatch(requestTodoList(userId))
+    return fetch(`http://ec2-54-158-62-69.compute-1.amazonaws.com:3000/api/task/read/${userId}`)
       .then(response => response.json())
       .then(json => {
         dispatch(receiveTodoList(json.doc))
@@ -45,8 +45,8 @@ const fetchTodoList = (user) => {
   }
 }
 
-const shouldFetchTodoList = (state, user) => {
-  return state.user.loggedIn && state.user.data != null
+const shouldFetchTodoList = (user) => {
+  return user.loggedIn && user.data != null
   // const tasks = state.todoApp.tasks
   // if (!tasks) {
   //   return true
@@ -57,10 +57,11 @@ const shouldFetchTodoList = (state, user) => {
   // }
 }
 
-export const fetchTodoListIfNeeded = (user) => {
+export const fetchTodoListIfNeeded = () => {
   return (dispatch, getState) => {
-    if (shouldFetchTodoList(getState(), user)) {
-      return dispatch(fetchTodoList(user))
+    const user = getState().user
+    if (shouldFetchTodoList(user)) {
+      return dispatch(fetchTodoList(user.data.emailAddresses[0].value))
     } else {
       return Promise.resolve()
     }

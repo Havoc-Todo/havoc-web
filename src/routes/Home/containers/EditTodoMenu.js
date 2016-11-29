@@ -10,7 +10,8 @@ const mapStateToProps = (state) => {
   return {
     todoMenu: state.todoApp.todoMenu,
     submitText: 'Edit Todo',
-    cancelText: 'Cancel Edit Todo'
+    cancelText: 'Cancel Edit Todo',
+    userId: state.user.data.emailAddresses[0].value
   }
 }
 
@@ -38,7 +39,7 @@ const mapDispatchToProps = (dispatch) => {
 const mergeProps = (stateProps, dispatchProps, ownProps) => {
   return Object.assign({}, stateProps, dispatchProps, ownProps, {
     handleSubmit: () => {
-      dispatchProps.handleSubmit(generateTodo(stateProps.todoMenu))
+      dispatchProps.handleSubmit(generateTodo(stateProps.todoMenu, stateProps.userId))
     }
   })
 }

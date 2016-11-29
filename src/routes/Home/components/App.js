@@ -8,9 +8,10 @@ import DefaultScreen from './DefaultScreen'
 class App extends React.Component {
 
   componentDidMount () {
-    this.props.fetchTodoListIfNeeded('57a7bd24-ddf0-5c24-9091-ba331e486dc7')
+    // '57a7bd24-ddf0-5c24-9091-ba331e486dc7'
+    this.props.fetchTodoListIfNeeded()
     this.intervalTimer = setInterval(() => {
-      this.props.fetchTodoListIfNeeded('57a7bd24-ddf0-5c24-9091-ba331e486dc7')
+      this.props.fetchTodoListIfNeeded()
     }, 1000)
   }
 
