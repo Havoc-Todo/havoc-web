@@ -46,6 +46,9 @@ const mergeProps = (stateProps, dispatchProps, ownProps) => {
     },
     handleTimeChange: (event, time) => {
       dispatchProps.updateField('time', time)
+    },
+    handleToggleChange: (event, toggle) => {
+      dispatchProps.updateField('addToGCalendar', toggle)
     }
   })
 }

@@ -1,4 +1,5 @@
 import fetch from 'isomorphic-fetch'
+import moment from 'moment'
 
 // ------------------------------------
 // Constants
@@ -50,6 +51,37 @@ const fetchAddTodo = (todo) => {
       .then(response => response.json())
       .then(json => {
         dispatch(receiveAddTodo(json.doc))
+      })
+      .then(() => {
+        console.log('todo is', todo)
+        console.log('gapi is', window.gapi)
+        if (todo.addToGCalendar === true) {
+          const event = {
+            'summary': todo.name,
+            'description': todo.description,
+            'start': {
+              'dateTime': moment(new Date(todo.dateDue)).format('YYYY-MM-DD[T]HH:mm:ssZ'),
+              'timeZone': 'America/Los_Angeles'
+            },
+            'end': {
+              'dateTime': moment(new Date(todo.dateDue + 1800000)).format('YYYY-MM-DD[T]HH:mm:ssZ'),
+              'timeZone': 'America/Los_Angeles'
+            }
+          }
+          console.log(todo.date)
+          console.log(event.start)
+          window.gapi.client.load('calendar', 'v3', () => {
+            console.log('initialized calendar')
+            const request = window.gapi.client.calendar.events.insert({
+              'calendarId': 'primary',
+              'resource': event
+            })
+            console.log('request is ', request)
+            request.execute((event) => {
+              console.log('Event created: ' + event.htmlLink)
+            })
+          })
+        }
       })
       .catch((error) => {
         dispatch(failureAddTodo(error))

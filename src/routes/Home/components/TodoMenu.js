@@ -6,6 +6,8 @@ import DatePicker from 'material-ui/DatePicker'
 import TimePicker from 'material-ui/TimePicker'
 import RaisedButton from 'material-ui/RaisedButton'
 import FlatButton from 'material-ui/FlatButton'
+import Toggle from 'material-ui/Toggle'
+
 import './Main.scss'
 
 let TodoMenu = ({
@@ -13,7 +15,7 @@ let TodoMenu = ({
   category, name, description, priority, date, time,
   handleCategoryChange, handleNameChange, handleDescriptionChange,
   handlePriorityChange, handleDateChange, handleTimeChange,
-  handleCancel, handleSubmit
+  handleCancel, handleSubmit, handleToggleChange
 }) => {
   return (
     <div className='fill-scroll'>
@@ -55,6 +57,9 @@ let TodoMenu = ({
           onChange={handleTimeChange}
           floatingLabelText='Due Time'
           hintText='Due Time' />
+        <Toggle
+          label='Add to Google Calendar?'
+          onToggle={handleToggleChange} />
         <RaisedButton
           label={submitText || 'Submit'}
           primary
@@ -84,7 +89,8 @@ TodoMenu.propTypes = {
   handleDateChange        : PropTypes.func.isRequired,
   handleTimeChange        : PropTypes.func.isRequired,
   handleCancel            : PropTypes.func.isRequired,
-  handleSubmit            : PropTypes.func.isRequired
+  handleSubmit            : PropTypes.func.isRequired,
+  handleToggleChange      : PropTypes.func.isRequired
 }
 
 export default TodoMenu
