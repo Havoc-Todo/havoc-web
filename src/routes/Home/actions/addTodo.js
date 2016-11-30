@@ -1,4 +1,5 @@
 import fetch from 'isomorphic-fetch'
+import moment from 'moment'
 
 // ------------------------------------
 // Constants
@@ -59,14 +60,16 @@ const fetchAddTodo = (todo) => {
             'summary': todo.name,
             'description': todo.description,
             'start': {
-              'dateTime': '2016-11-29T09:00:00-07:00',
+              'dateTime': moment(new Date(todo.dateDue)).format('YYYY-MM-DD[T]HH:mm:ssZ'),
               'timeZone': 'America/Los_Angeles'
             },
             'end': {
-              'dateTime': '2016-11-29T17:00:00-07:00',
+              'dateTime': moment(new Date(todo.dateDue + 1800000)).format('YYYY-MM-DD[T]HH:mm:ssZ'),
               'timeZone': 'America/Los_Angeles'
             }
           }
+          console.log(todo.date)
+          console.log(event.start)
           window.gapi.client.load('calendar', 'v3', () => {
             console.log('initialized calendar')
             const request = window.gapi.client.calendar.events.insert({
