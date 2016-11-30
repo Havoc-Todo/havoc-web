@@ -4,7 +4,8 @@ import { fetchTodoListIfNeeded } from '../actions/todoList'
 
 const mapStateToProps = (state) => {
   return {
-    view: state.todoApp.view
+    view: state.todoApp.view,
+    user: state.user
   }
 }
 

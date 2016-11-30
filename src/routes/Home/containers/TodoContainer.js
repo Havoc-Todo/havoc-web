@@ -3,18 +3,31 @@ import { changeView } from '../actions'
 import { loadTodoMenu } from '../actions/TodoMenu'
 import { fetchTodoListIfNeeded } from '../actions/todoList'
 import { fetchDeleteTodoIfNeeded } from '../actions/deleteTodo'
+import { fetchEditTodoIfNeeded } from '../actions/editTodo'
 import Todo from '../components/Todo'
 
 const mapStateToProps = (state, ownProps) => {
-  return { ...ownProps.todo }
+  return {
+    ...ownProps.todo,
+    todo: ownProps.todo
+  }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
+    completeTodo: (todo) => {
+      dispatch(fetchEditTodoIfNeeded(todo))
+        .then(() => {
+          dispatch(fetchTodoListIfNeeded())
+        })
+        .catch((error) => {
+          console.log(error)
+        })
+    },
     deleteTodo: (id) => {
       dispatch(fetchDeleteTodoIfNeeded(id))
         .then(() => {
-          dispatch(fetchTodoListIfNeeded('57a7bd24-ddf0-5c24-9091-ba331e486dc7'))
+          dispatch(fetchTodoListIfNeeded())
           .then(() => {})
         })
     },
@@ -28,6 +41,12 @@ const mapDispatchToProps = (dispatch) => {
 
 const mergeProps = (stateProps, dispatchProps, ownProps) => {
   return Object.assign({}, stateProps, dispatchProps, ownProps, {
+    completeTodo: () => {
+      const updatedTodo = Object.assign({}, stateProps.todo, {
+        status: 'DONE'
+      })
+      dispatchProps.completeTodo(updatedTodo)
+    },
     handleEdit: () => {
       dispatchProps.handleEdit(ownProps.todo)
     }

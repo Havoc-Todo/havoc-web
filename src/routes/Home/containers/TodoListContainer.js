@@ -17,7 +17,7 @@ const mapDispatchToProps = (dispatch) => {
     deleteTodo: (id) => {
       dispatch(fetchDeleteTodoIfNeeded(id))
         .then(() => {
-          dispatch(fetchTodoListIfNeeded('57a7bd24-ddf0-5c24-9091-ba331e486dc7'))
+          dispatch(fetchTodoListIfNeeded())
           .then(() => {})
         })
     }

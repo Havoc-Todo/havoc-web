@@ -30,7 +30,7 @@ export function getDateTime (dateDue) {
 }
 
 // Returns a new todo given the todoMenu fields and the user id
-export function generateTodo (todoMenuFields, user = '57a7bd24-ddf0-5c24-9091-ba331e486dc7') {
+export function generateTodo (todoMenuFields, userId) {
   const { t_id, name, description, category, priority, date, time, addToGCalendar } = todoMenuFields
   return {
     t_id,
@@ -40,7 +40,7 @@ export function generateTodo (todoMenuFields, user = '57a7bd24-ddf0-5c24-9091-ba
     priority,
     addToGCalendar,
     dateDue: unixTime(date, time),
-    user,
+    user: userId,
     subtasks: [],
     status: 'INCOMPLETE'
   }

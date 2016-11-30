@@ -10,7 +10,8 @@ const mapStateToProps = (state) => {
   return {
     todoMenu: state.todoApp.todoMenu,
     submitText: 'Edit Todo',
-    cancelText: 'Cancel Edit Todo'
+    cancelText: 'Cancel Edit Todo',
+    userId: state.user.data.emailAddresses[0].value
   }
 }
 
@@ -20,7 +21,7 @@ const mapDispatchToProps = (dispatch) => {
       dispatch(fetchEditTodoIfNeeded(todo))
         .then(() => {
           dispatch(clearTodoMenu())
-          dispatch(fetchTodoListIfNeeded('57a7bd24-ddf0-5c24-9091-ba331e486dc7'))
+          dispatch(fetchTodoListIfNeeded())
           .then(() => {
             dispatch(changeView('VIEW_TODO_LIST'))
           })
@@ -38,7 +39,7 @@ const mapDispatchToProps = (dispatch) => {
 const mergeProps = (stateProps, dispatchProps, ownProps) => {
   return Object.assign({}, stateProps, dispatchProps, ownProps, {
     handleSubmit: () => {
-      dispatchProps.handleSubmit(generateTodo(stateProps.todoMenu))
+      dispatchProps.handleSubmit(generateTodo(stateProps.todoMenu, stateProps.userId))
     }
   })
 }
