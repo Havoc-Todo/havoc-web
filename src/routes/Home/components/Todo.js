@@ -24,7 +24,7 @@ const Todo = ({ onClick, name, priority, status, t_id, completeTodo, deleteTodo,
       <MenuItem onClick={handleEdit}>Edit</MenuItem>
       <MenuItem onClick={() => deleteTodo(t_id)}>Delete</MenuItem>
     </IconMenu>)
-  
+
   const priorityText = (() => {
     switch (priority) {
       case 'NONE': return ''

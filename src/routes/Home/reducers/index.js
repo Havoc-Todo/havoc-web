@@ -22,7 +22,6 @@ const todos = (state = [], action) => {
   }
 }
 
-
 const sortControl = (state = 'priority', action) => {
   switch (action.type) {
     case SET_TODOLIST_SORT:
