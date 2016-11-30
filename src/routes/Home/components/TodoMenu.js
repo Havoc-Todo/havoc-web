@@ -22,6 +22,7 @@ let TodoMenu = ({
           value={category}
           onChange={handleCategoryChange}
           floatingLabelText='Category'>
+          <MenuItem value={''} primaryText='None' />
           <MenuItem value={'school'} primaryText='School' />
           <MenuItem value={'work'} primaryText='Work' />
         </SelectField>

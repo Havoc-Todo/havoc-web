@@ -16,7 +16,7 @@ const defaultTime = () => {
 const defaultFields = () => {
   const { date, time } = defaultTime()
   return {
-    category: 'school',
+    category: '',
     name: '',
     description: '',
     priority: 'NONE',

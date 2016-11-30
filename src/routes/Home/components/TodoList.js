@@ -1,20 +1,24 @@
 import React, { PropTypes } from 'react'
 import { List } from 'material-ui/List'
 import TodoContainer from '../containers/TodoContainer'
+import TodoListControlBar from './TodoListControlBar'
 
 const TodoList = ({
   todos, onTodoClick
 }) => (
-  <List className='fill-scroll'>
-    {todos.map(todo =>
-      <TodoContainer
-        key={todo.t_id}
-        todo={todo}
-        onClick={() => onTodoClick(todo.t_id)}
-      />
-    )}
-    <div style={{ height: '80px', width: '100%' }} />
-  </List>
+  <div>
+    <TodoListControlBar />
+    <List className='fill-scroll'>
+      {todos.map(todo =>
+        <TodoContainer
+          key={todo.t_id}
+          todo={todo}
+          onClick={() => onTodoClick(todo.t_id)}
+        />
+      )}
+      <div style={{ height: '80px', width: '100%' }} />
+    </List>
+  </div>
 )
 
 TodoList.propTypes = {

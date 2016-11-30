@@ -6,6 +6,24 @@ import { fetchDeleteTodoIfNeeded } from '../actions/TodoMenu'
 const mapStateToProps = (state) => {
   return {
     todos: state.todoApp.todos
+      .filter((() => {
+        switch (state.todoApp.controls.filter) {
+          case 'incomplete': return todo => todo.status === 'INCOMPLETE'
+          case 'complete': return todo => todo.status === 'DONE'
+          case 'all': return todo => true
+          default: return todo => true
+        }
+      })())
+      .concat() // sort is in-place, so make a new copy with concat()
+      .sort((a, b) => { // hardcoded to sort by priority
+        const value = {
+          NONE: 0,
+          LOW: 1,
+          MEDIUM: 2,
+          HIGH: 3
+        }
+        return value[b.priority] - value[a.priority]
+      })
   }
 }
 
