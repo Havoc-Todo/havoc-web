@@ -56,6 +56,9 @@ let TodoMenu = ({
           onChange={handleTimeChange}
           floatingLabelText='Due Time'
           hintText='Due Time' />
+        <Toggle
+          label='Add to Google Calendar?'
+          onToggle={handleToggleChange} />
         <RaisedButton
           label={submitText || 'Submit'}
           primary
@@ -64,9 +67,6 @@ let TodoMenu = ({
           label={cancelText || 'Cancel'}
           secondary
           onTouchTap={handleCancel} />
-        <Toggle
-          label="Add to Google Calendar?"
-          onToggle={handleToggleChange} />
       </div>
     </div>
   )
