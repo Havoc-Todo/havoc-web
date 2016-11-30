@@ -6,9 +6,9 @@ import TodoListControlBar from './TodoListControlBar'
 const TodoList = ({
   todos, onTodoClick
 }) => (
-  <div>
+  <div className='fill-scroll'>
     <TodoListControlBar />
-    <List className='fill-scroll'>
+    <List>
       {todos.map(todo =>
         <TodoContainer
           key={todo.t_id}
